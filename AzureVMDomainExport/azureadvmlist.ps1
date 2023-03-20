@@ -11,14 +11,14 @@ Empty value = Device not existing in Azure AD
 
 
 ############ FIXED VARIABLES ###############
-$StAccName = "villatestsa"
-$SAAccessKey = "9IqA7zObRCIcU/xB6Mj4LxBmv8Uz8itjorP/hRWgvULSvdqYP7NyvQ7Qk4/ijaEgaVOgwjEUSqLm+AStHFSbEw=="
-$SAContainerName = "azurevmexport"
+$StAccName = #StorageAccountName
+$SAAccessKey = #StorageAccountAccessKey
+$SAContainerName = #StorageAccountBlobContainerName
 ############################################
 
-$PumaSubscriptions = Get-AzSubscription
-$PumaVM = @()
-foreach ($Sub in $PumaSubscriptions) {
+$Subscriptions = Get-AzSubscription
+$VMList = @()
+foreach ($Sub in $Subscriptions) {
     Write-Host "Processing Subscription:" $Sub.Name -BackgroundColor Yellow
     try {
         Select-AzSubscription -Subscription $Sub.SubscriptionId -ErrorAction Continue
@@ -30,14 +30,14 @@ foreach ($Sub in $PumaSubscriptions) {
                 'VM Name' = $VM.Name
                 'Domain Type' = $AzureADDevice.DeviceTrustType
             }
-            $PumaVM += $VMInfo
+            $VMList += $VMInfo
         }
     }
     catch {
         Write-Output $error[0]
     }
 }
-$PumaVM
+$VMList
 $Context = New-AzStorageContext -StorageAccountName $StAccName -StorageAccountKey $SAAccessKey
-Write-Output $PumaVM | Export-Csv "./AutomationFile.csv" -NoTypeInformation
+Write-Output $VMList | Export-Csv "./AutomationFile.csv" -NoTypeInformation
 Set-AzStorageBlobContent -Force -Context $Context -Container $SAContainerName -File "./AutomationFile.csv" -Blob "azureadvmlist.csv"

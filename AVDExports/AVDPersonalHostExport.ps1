@@ -6,11 +6,11 @@ Host name, Assigned User, Agent Version, Last Heartbeat.
 
 ####################################
 #Fixed Variables
-$AVDSubID = "4b9e7b75-3d80-47af-aee0-51ab1e0e599b"
-$AVDPersRG = "GLOBAL_AVDPERSONAL"
-#$StAccName = "villatestsa"
-#$SAAccessKey = "9IqA7zObRCIcU/xB6Mj4LxBmv8Uz8itjorP/hRWgvULSvdqYP7NyvQ7Qk4/ijaEgaVOgwjEUSqLm+AStHFSbEw=="
-#$SAContainerName = "avdhostsinfo"
+$AVDSubID = #SubscriptionID
+$AVDPersRG = #ResourceGroupName
+#$StAccName = #StorageAccountName
+#$SAAccessKey = #StorageAccountAccessKey
+#$SAContainerName = #StorageAccountBlobContainerName
 ####################################
 
 Set-AzContext -Subscription $AVDSubID                                                                                                                                           #Set Context to EA Azure AVD PROD subscription

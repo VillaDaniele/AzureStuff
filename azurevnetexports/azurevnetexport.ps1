@@ -3,9 +3,9 @@ Script extract number of connected devices to Vnets.
 Output is: Subscription name, Vnet name, Vnet location, DNS Servers, Count of connected devices.
 #>
 
-$PumaSubscription = Get-AzSubscription
-$PumaVNET = @()
-foreach ($SUB in $PumaSubscription) {
+Subscription = Get-AzSubscription
+$VNETList = @()
+foreach ($SUB in $Subscription) {
     try {
         Select-AzSubscription -SubscriptionId $Sub.SubscriptionId -ErrorAction Continue
         $AzureVNET = Get-AzVirtualNetwork
@@ -21,12 +21,12 @@ foreach ($SUB in $PumaSubscription) {
                     'Connected devices' = ($VNET.Subnets.IpConfigurations.Id).Count
                 }
             }
-        $PumaVNET += $VNETInfo
+        $VNETList += $VNETInfo
         }
     }
     catch {
         Write-Output $error[0]
     }
 }
-$PumaVNET
-Write-Output $PumaVNET | Export-Csv ".\automation.csv" -NoTypeInformation
+$VNETList
+Write-Output $VNETList | Export-Csv ".\automation.csv" -NoTypeInformation
