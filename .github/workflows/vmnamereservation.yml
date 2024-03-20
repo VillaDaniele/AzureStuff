@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+name: Virtual Machine name reservation
+
+jobs:
+  deploy-script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Run PS Script
+      shell: pwsh
+      run: |
+        ./VMNAMEReservation/vmnamereservation.ps1
