@@ -10,14 +10,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Download New CSV
+    - name: Download CSV
       run: |
-        if (curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv); then
-          echo "CSV download successful."
-        else
-          echo "CSV download failed."
-          exit 1
-        fi
+        curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv
 
     - name: Run PS Script
       shell: pwsh
