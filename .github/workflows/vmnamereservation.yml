@@ -21,7 +21,7 @@ jobs:
 
     - name: Check CSV Location
       run: |
-        whereis azurevmnames
+        whereis -l azurevmnames
 
     - name: Check CSV File Size
       id: check-csv
