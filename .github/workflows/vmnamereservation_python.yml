@@ -20,6 +20,10 @@ jobs:
           exit 1
         fi
 
+    - name: Check CSV Location
+      run: |
+        whereis -l azurevmnames.csv
+
     - name: Check CSV File Size
       id: check-csv
       run: |
