@@ -1,0 +1,40 @@
+
+on:
+  workflow_dispatch:
+
+name: Virtual Machine name reservation
+
+jobs:
+  deploy-script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Download CSV
+      run: |
+        if curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv; then
+          echo "CSV download successful."
+        else
+          echo "CSV download failed."
+          exit 1
+        fi
+
+    - name: Check CSV Location
+      run: |
+        whereis -l azurevmnames.csv
+
+    - name: Check CSV File Size
+      id: check-csv
+      run: |
+        if [ -s csv\azurevmnames.csv ]; then
+          echo "CSV file is not empty."
+        else
+          echo "CSV file is empty."
+          exit 1
+        fi
+
+    - name: Run PS Script
+      shell: pwsh
+      run: |
+        ./VMNAMEReservation/vmnamereservation.ps1
