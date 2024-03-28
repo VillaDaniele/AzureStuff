@@ -11,10 +11,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install CSV module for Python
-      run: |
-        pip install csv
-
     - name: Download CSV
       run: |
         if curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv; then
