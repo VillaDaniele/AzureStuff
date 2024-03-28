@@ -31,6 +31,5 @@ jobs:
         fi
 
     - name: Run Python Script
-      shell: pwsh
       run: |
-        ./VMNAMEReservation/namereservation.py
+        python namereservation.py
