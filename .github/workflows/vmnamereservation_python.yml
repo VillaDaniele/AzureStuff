@@ -11,6 +11,10 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    - name: Install CSV module for Python
+      run: |
+        pip install csv
+
     - name: Download CSV
       run: |
         if curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv; then
@@ -19,10 +23,6 @@ jobs:
           echo "CSV download failed."
           exit 1
         fi
-
-    - name: Check CSV Location
-      run: |
-        whereis -l azurevmnames.csv
 
     - name: Check CSV File Size
       id: check-csv
@@ -34,7 +34,7 @@ jobs:
           exit 1
         fi
 
-    - name: Run PS Script
+    - name: Run Python Script
       shell: pwsh
       run: |
-        ./VMNAMEReservation/vmnamereservation.ps1
+        ./VMNAMEReservation/namereservation.py
