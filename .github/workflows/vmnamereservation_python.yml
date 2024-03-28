@@ -2,7 +2,7 @@
 on:
   workflow_dispatch:
 
-name: Virtual Machine name reservation
+name: Virtual Machine name reservation - Python
 
 jobs:
   deploy-script:
