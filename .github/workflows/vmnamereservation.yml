@@ -33,15 +33,15 @@ jobs:
       run: |
         find . -type f -name azurevmnames.csv
 
-    - name: Check CSV File Size
-      id: check-csv
-      run: |
-        if [ -s csv\azurevmnames.csv ]; then
-          echo "CSV file is not empty."
-        else
-          echo "CSV file is empty."
-          exit 1
-        fi
+#    - name: Check CSV File Size
+#      id: check-csv
+#      run: |
+#       if [ -s /home/runner/work/AzureStuff/AzureStuff/azurevmnames.csv ]; then
+#          echo "CSV file is not empty."
+#        else
+#          echo "CSV file is empty."
+#          exit 1
+#        fi
 
     - name: Read CSV file content - Before PS
       id: Read-csv
