@@ -20,4 +20,4 @@ else {
 }
 
 $context = New-AzStorageContext -StorageAccountName $SAName -StorageAccountKey $SAKey
-Set-AzStorageBlobContent -Force -Context $context -Container $SAContainerName -File "./azurevmnames.csv" -Blob "azurevmnames.csv"
+Set-AzStorageBlobContent -Force -Context $context -Container $SAContainerName -File "/home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv/azurevmnames.csv" -Blob "azurevmnames.csv"
