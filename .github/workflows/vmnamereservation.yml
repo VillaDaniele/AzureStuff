@@ -12,7 +12,7 @@ jobs:
 
     - name: Download CSV
       run: |
-        if curl -o csv\azurevmnames.csv https://github.com/VillaDaniele/AzureStuff/blob/main/VMNAMEReservation/csv/azurevmnames.csv; then
+        if curl -o csv\azurevmnames.csv https://villatestsa.blob.core.windows.net/azure-vmname/azurevmnames.csv; then
           echo "CSV download successful."
         else
           echo "CSV download failed."
