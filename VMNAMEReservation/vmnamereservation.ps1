@@ -2,8 +2,8 @@ $SAContainerName = "azure-vmname"
 $SAName = "villatestsa"
 $SAKey = "9IqA7zObRCIcU/xB6Mj4LxBmv8Uz8itjorP/hRWgvULSvdqYP7NyvQ7Qk4/ijaEgaVOgwjEUSqLm+AStHFSbEw=="
 
-$CurrentAzureVMNames = Import-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv/azurevmnames.csv"
-$LatestAzureVMName = Import-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv/azurevmnames.csv" | Select-Object -Last 1
+$CurrentAzureVMNames = Import-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/azurevmnames.csv"
+$LatestAzureVMName = Import-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/azurevmnames.csv" | Select-Object -Last 1
 $LatestAzureVMName = $LatestAzureVMName | foreach {$_.VMNAME}
 $NextAvailableVMName = [int16]$LatestAzureVMName.Substring($LatestAzureVMName.Length - 3)
 
@@ -16,8 +16,8 @@ else {
     Write-Host "The next available name for a Virtual Machine is:" $NextVMName -BackgroundColor Gray
     New-Object -TypeName PSCustomObject -Property @{
     'VMNAME' = $NextVMName
-    } | Export-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv/azurevmnames.csv" -NoTypeInformation -Append
+    } | Export-Csv -Path "/home/runner/work/AzureStuff/AzureStuff/azurevmnames.csv" -NoTypeInformation -Append
 }
 
 $context = New-AzStorageContext -StorageAccountName $SAName -StorageAccountKey $SAKey
-Set-AzStorageBlobContent -Force -Context $context -Container $SAContainerName -File "/home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv/azurevmnames.csv" -Blob "azurevmnames.csv"
+Set-AzStorageBlobContent -Force -Context $context -Container $SAContainerName -File "/home/runner/work/AzureStuff/AzureStuff/azurevmnames.csv" -Blob "azurevmnames.csv"
