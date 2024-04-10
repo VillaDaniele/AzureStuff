@@ -10,6 +10,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    - name: Install required PowerShell modules
+      shell: pwsh
+      run: |
+        Set-PSRepository PSGallery -InstallationPolicy Trusted
+        Install-Module -Name Az -Scope CurrentUser -Repository PSGallery
+
     - name: Download CSV
       run: |
         if curl -o csv\azurevmnames.csv https://villatestsa.blob.core.windows.net/azure-vmname/azurevmnames.csv; then
@@ -21,7 +27,7 @@ jobs:
 
     - name: Check CSV Location
       run: |
-        whereis -l azurevmnames.csv
+        find /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv -type f -name azurevmnames.csv
 
     - name: Check CSV File Size
       id: check-csv
