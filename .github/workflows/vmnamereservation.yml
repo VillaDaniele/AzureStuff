@@ -10,46 +10,50 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install required PowerShell modules
-      shell: pwsh
+    - name: Check Working directory
       run: |
-        Set-PSRepository PSGallery -InstallationPolicy Trusted
-        Install-Module -Name Az.Storage -Scope CurrentUser -Repository PSGallery
+        pwd
+  
+#    - name: Install required PowerShell modules
+#      shell: pwsh
+#      run: |
+#        Set-PSRepository PSGallery -InstallationPolicy Trusted
+#        Install-Module -Name Az.Storage -Scope CurrentUser -Repository PSGallery
 
-    - name: Download CSV
-      run: |
-        if curl -o csv\azurevmnames.csv https://villatestsa.blob.core.windows.net/azure-vmname/azurevmnames.csv; then
-          echo "CSV download successful."
-        else
-          echo "CSV download failed."
-          exit 1
-        fi
+#    - name: Download CSV
+#      run: |
+#        if curl -o csv\azurevmnames.csv https://villatestsa.blob.core.windows.net/azure-vmname/azurevmnames.csv; then
+#          echo "CSV download successful."
+#        else
+#          echo "CSV download failed."
+#          exit 1
+#        fi
 
-    - name: Check CSV Location
-      run: |
-        find . -type f -name azurevmnames.csv
+#   - name: Check CSV Location
+#     run: |
+#        find . -type f -name azurevmnames.csv
 
-    - name: Check CSV File Size
-      id: check-csv
-      run: |
-        if [ -s csv\azurevmnames.csv ]; then
-          echo "CSV file is not empty."
-        else
-          echo "CSV file is empty."
-          exit 1
-        fi
+#    - name: Check CSV File Size
+#      id: check-csv
+#      run: |
+#        if [ -s csv\azurevmnames.csv ]; then
+#          echo "CSV file is not empty."
+#        else
+#          echo "CSV file is empty."
+#          exit 1
+#        fi
 
-    - name: Read CSV file content - Before PS
-      id: Read-csv
-      run: |
-        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
+#    - name: Read CSV file content - Before PS
+#      id: Read-csv
+#      run: |
+#        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
     
-    - name: Run PS Script
-      shell: pwsh
-      run: |
-        ./VMNAMEReservation/vmnamereservation.ps1
+#    - name: Run PS Script
+#      shell: pwsh
+#      run: |
+#        ./VMNAMEReservation/vmnamereservation.ps1
 
-    - name: Read CSV file content - After PS
-      id: ReRead-Csv
-      run: |
-        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
+#    - name: Read CSV file content - After PS
+#      id: ReRead-Csv
+#      run: |
+#        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
