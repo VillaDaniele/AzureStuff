@@ -39,7 +39,17 @@ jobs:
           exit 1
         fi
 
+    - name: Read CSV file content - Before PS
+      id: Read-csv
+      run: |
+        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
+    
     - name: Run PS Script
       shell: pwsh
       run: |
         ./VMNAMEReservation/vmnamereservation.ps1
+
+    - name: Read CSV file content - After PS
+      id: ReRead-Csv
+      run: |
+        cd /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv && tail azurevmnames.csv
