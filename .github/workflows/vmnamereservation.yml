@@ -27,7 +27,7 @@ jobs:
 
     - name: Check CSV Location
       run: |
-        find /home/runner/work/AzureStuff/AzureStuff/VMNAMEReservation/csv -type f -name azurevmnames.csv
+        find . -type f -name azurevmnames.csv
 
     - name: Check CSV File Size
       id: check-csv
