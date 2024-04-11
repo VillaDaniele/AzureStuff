@@ -6,14 +6,14 @@
 </head>
 <body>
 	  
-	  <h1> PUMA Request Azure Virtual Machine Name </h1>
+	<h1> PUMA Request Azure Virtual Machine Name </h1>
     
     <button onclick="launchCurl()">Request VM Name</button>
 
     <script>
 	function launchCurl() {
 		var curlCommand = 'curl https://api.github.com/repos/VillaDaniele/AzureStuff/dispatches';
-		fetch('/index.html', {
+		fetch('AzureStuff/index.html', {
     		method: 'POST',
     		headers: {
         		'Accept': 'application/vnd.github+json',
