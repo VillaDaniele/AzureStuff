@@ -12,8 +12,8 @@
 
     <script>
 	function launchCurl() {
-		var curlCommand = 'curl https://api.github.com/repos/VillaDaniele/AzureStuff/dispatches';
-		fetch('AzureStuff/index.html', {
+		var curlCommand = 'curl';
+		fetch('https://api.github.com/repos/VillaDaniele/AzureStuff/dispatches', {
     		method: 'POST',
     		headers: {
         		'Accept': 'application/vnd.github+json',
