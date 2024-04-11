@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Launch Curl Command</title>
+    <title>PUMA Request Azure Virtual Machine Name</title>
+    <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
+	  
+	  <h1> PUMA Request Azure Virtual Machine Name </h1>
+    
     <button onclick="launchCurl()">Request VM Name</button>
 
     <script>
-        function launchCurl() {
-            // Define your curl command here
-            var curlCommand = 'curl https://api.github.com/repos/VillaDaniele/AzureStuff/dispatches';
-
-            // Execute the curl command using JavaScript's Fetch API
-            fetch('/execute-curl', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                    'Accept: application/vnd.github+json'
-                    'Authorization: Bearer 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'
-                    'X-GitHub-Api-Version: 2022-11-28'
-                },
-                data: {
-                    'event_type': 'PUMA Azure VM Reservation'
-                },
-                body: JSON.stringify({ command: curlCommand })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data); // Do something with the response if needed
-            })
-            .catch(error => {
-                console.error('There was a problem with your fetch operation:', error);
-            });
-        }
+	function launchCurl() {
+		var curlCommand = 'curl https://api.github.com/repos/VillaDaniele/AzureStuff/dispatches';
+		fetch('/execute-curl', {
+    		method: 'POST',
+    		headers: {
+        		'Accept': 'application/vnd.github+json',
+        		'Authorization': 'Bearer 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',
+      			'X-GitHub-Api-Version': '2022-11-28'
+    		},
+    		body: JSON.stringify({ command: curlCommand })
+		})
+		.then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Do something with the response if needed
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+	}
     </script>
+    
+    <br></br>
+    
+    <footer>
+    <p>Author: Daniele Villa - IT Cloud Infrastructure - <a href="mailto:it-cloud-infrastructure@puma.com">it-cloud-infrastructure@puma.com</a></p>
+    </footer>
 </body>
 </html>
