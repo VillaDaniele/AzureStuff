@@ -17,7 +17,7 @@
     		method: 'POST',
     		headers: {
         		'Accept': 'application/vnd.github+json',
-        		'Authorization': 'Bearer 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',
+        		'Authorization': 'Bearer $env:AccessToken',
       			'X-GitHub-Api-Version': '2022-11-28'
     		},
     		body: JSON.stringify({ command: curlCommand })
