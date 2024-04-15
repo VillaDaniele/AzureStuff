@@ -1,7 +1,7 @@
 on:
   repository_dispatch:
 
-concurrency: ${{ github.wokflow_ref == main.yml }}
+concurrency: ${{ github.wokflow_ref == 'main.yml' }}
 
 name: PUMA Azure VM Reservation
 
