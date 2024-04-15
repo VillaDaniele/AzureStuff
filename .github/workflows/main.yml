@@ -1,7 +1,9 @@
 on:
   repository_dispatch:
 
-concurrency: ${{ github.wokflow_ref == 'main.yml' }}
+concurrency: 
+  group: ${{ github.wokflow_ref == 'main.yml' }}
+  cancel-in-progress: false
 
 name: PUMA Azure VM Reservation
 
