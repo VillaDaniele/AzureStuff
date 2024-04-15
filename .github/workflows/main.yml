@@ -1,6 +1,8 @@
 on:
   repository_dispatch:
 
+concurrency: ${{ github.wokflow_ref = "https://github.com/VillaDaniele/AzureStuff/blob/main/.github/workflows/main.yml" }}
+
 name: PUMA Azure VM Reservation
 
 jobs:
